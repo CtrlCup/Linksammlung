@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonderzeichensammlung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/wallpaper.jpeg'); /* Ersetze 'dein-bild.jpg' mit dem Pfad zu deinem Bild */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 80vh; /* Beschränkt die Höhe auf 80% der Ansichtshöhe */
+            width: 80%; /* Macht den Container 80% der Ansichtsbreite */
+            max-width: 800px; /* Maximale Breite des Containers */
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .content::-webkit-scrollbar {
+            display: none; /* Versteckt den Scrollbalken in Webkit-Browsern */
+        }
+        /* Versteckt den Scrollbalken in Firefox */
+        .content {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        td {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sonderzeichensammlung</h1>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Zeichen</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>&#945;</td>
+                        <td>Griechischer Buchstabe Alpha</td>
+                        <td>&amp;#945;</td>
+                    </tr>
+                    <tr>
+                        <td>&#946;</td>
+                        <td>Griechischer Buchstabe Beta</td>
+                        <td>&amp;#946;</td>
+                    </tr>
+                    <tr>
+                        <td>&#960;</td>
+                        <td>Griechischer Buchstabe Pi</td>
+                        <td>&amp;#960;</td>
+                    </tr>
+                    <tr>
+                        <td>&#937;</td>
+                        <td>Griechischer Buchstabe Omega</td>
+                        <td>&amp;#937;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8704;</td>
+                        <td>Für alle (Universalquantor)</td>
+                        <td>&amp;#8704;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8707;</td>
+                        <td>Es existiert (Existenzquantor)</td>
+                        <td>&amp;#8707;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8800;</td>
+                        <td>Ungleich</td>
+                        <td>&amp;#8800;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8745;</td>
+                        <td>Schnittmenge</td>
+                        <td>&amp;#8745;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8746;</td>
+                        <td>Vereinigungsmenge</td>
+                        <td>&amp;#8746;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8804;</td>
+                        <td>Kleiner gleich</td>
+                        <td>&amp;#8804;</td>
+                    </tr>
+                    <tr>
+                        <td>&#8805;</td>
+                        <td>Größer gleich</td>
+                        <td>&amp;#8805;</td>
+                    </tr>
+                    <!-- Weitere Zeichen hinzufügen -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
