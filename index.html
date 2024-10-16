@@ -1,203 +1,391 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Linksammlung HTWG - by Alex</title>
-        <link rel="icon" href="images/htwg-x32.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="images/htwg-x64.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" sizes="180x180" href="images/htwg-apple.png" />
-        <style>
-            body {
-                background-image: url(images/wallpaper.jpeg);
-                background-size: cover;
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-            @font-face {
-                font-family: MeineSchriftart;
-                src: url(scr/WOBBLES_.ttf);
-                font-weight: normal;
-                font-style: normal;
-                font-size: 10vh;
-            }
-            @media (max-width: 768px) {
-                .container-left, .container-right {
-                    flex-basis: 100%;
-                    margin-right: 0;
-                    margin-bottom: 20px;}
-            }
-            body {
-                margin: 0;
-                overflow: hidden;
-                font-family: 'MeineSchriftart', sans-serif;
-            }
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linksammlung HTWG - by Alex</title>
+    <link rel="icon" href="images/htwg-x32.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/htwg-x64.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="images/htwg-apple.png" />
+    <style>
+        body {
+            background-image: url(images/wallpaper.jpeg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        @font-face {
+            font-family: MeineSchriftart;
+            src: url(scr/WOBBLES_.ttf);
+            font-weight: normal;
+            font-style: normal;
+            font-size: 10vh;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'MeineSchriftart', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%;
+            max-width: 1200px;
+            background-color: transparent;
+            flex-wrap: nowrap;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            scroll-snap-type: x mandatory;
+        }
+
+        .container-left,
+        .container-right {
+            flex: 0 0 100%; /* Ensure each container takes full width */
+            margin: 10px;
+            min-width: 250px;
+            max-width: 350px;
+            scroll-snap-align: start;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            margin-left: 20px; /* Added more space between image and text */
+            color: rgb(173, 168, 118);
+            text-decoration: none;
+            font-size: 1.2em;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .rounded-img {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 110px;
+            height: 110px;
+            flex-shrink: 0;
+        }
+
+        .rounded-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .link:hover .description {
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            color: rgb(173, 168, 118);
+        }
+
+        .switch {
+            position: absolute;
+            top: 35px;
+            right: 35px;
+            width: 85px;
+            height: 25px;
+            background: #707596;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        .switch::before {
+            content: "HTWG";
+            color: rgb(48, 50, 82);
+            position: absolute;
+            left: 30px;
+            transition: opacity 0.3s;
+            font-size: 11px;
+        }
+
+        .switch::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background: rgb(90, 194, 187);
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            transition: left 0.3s;
+        }
+
+        .switch.active {
+            background: #904caf;
+        }
+
+        .switch.active::before {
+            content: "Uni";
+            left: 30px;
+        }
+
+        .switch.active::after {
+            left: 60px;
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
             .container {
-                max-width: 90%; 
+                flex-direction: row; /* Horizontal alignment for mobile */
+                width: 100%;
+                height: 70%;
+                justify-content: flex-start; /* Align items to the start */
+                overflow-x: auto; /* Enable horizontal scrolling */
+                scroll-snap-type: x mandatory;
+                padding-left: 0px; /* Adjust this value to set distance from left edge */
+            }
+
+            .container-left,
+            .container-right {
+                flex: 0 0 100%; /* Each container takes full width */
+                min-width: 100%;
+                max-width: 100%;
                 margin: 0;
-                margin-left:5vh;
-                padding: 1%; 
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background-color: transparent;
             }
-            .container-left, .container-right {
-                flex-basis: calc(35% - 15);
-                margin-top: 4%; 
-                padding: 1%;
-                margin-bottom: 20px;
-            }
-            .container-left {
-                margin-right: 10px; 
-            }
-            .container-right{
-                margin-left:10%;
-            }
+
             .image-container {
-                display: flex; 
-                align-items: center; 
+                justify-content: center;
+                margin-bottom: 25px;
             }
+
             .description {
-                margin-left: 15px;
-                color: rgb(173, 168, 118);
-                text-decoration: none;
+                text-align: center;
+                margin-left: 50;
+                font-size: 1em;
+                white-space: normal;
             }
-            .rounded-img{
-                border-radius: 50%; 
-                overflow: hidden; 
-                width: 100px; 
-                height: 100px;
-                margin-bottom: 10%;
+
+            .rounded-img {
+                width: 80px;
+                height: 80px;
+                margin-left: 70px;
             }
-            .link{
-                text-decoration: none;
+        }
+    </style>
+    <script>
+        function switchUniversity() {
+            var linksHTWG = [
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/bibliothek/start",
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/cafe-endlicht",
+                "https://seezeit.com/essen/speiseplaene/mensa-htwg/",
+                "https://lsf.htwg-konstanz.de/qisserver/rds?state=wplan&act=stg&pool=stg&show=plan&P.vx=kurz&r_zuordabstgv.semvonint=1&r_zuordabstgv.sembisint=1&missing=allTerms&k_parallel.parallelid=&k_abstgv.abstgvnr=4541&r_zuordabstgv.phaseid=",
+                "https://www.htwg-konstanz.de/studium/pruefungsangelegenheiten/terminefristen/",
+                "https://webmail.htwg-konstanz.de/SOGo/",
+                "https://moodle.htwg-konstanz.de/moodle/login/index.php",
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/wegweiser",
+                "https://login.rz.htwg-konstanz.de",
+                "https://studium.alex-klauser.de/sonderzeichen"
+            ];
+            var linksOtherUni = [
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/bibliothek/suchen-finden",
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/cafe-endlicht",
+                "https://seezeit.com/essen/speiseplaene/mensa-giessberg/",
+                "https://lsf.htwg-konstanz.de/qisserver/rds?state=wplan&act=stg&pool=stg&show=plan&P.vx=kurz&r_zuordabstgv.semvonint=1&r_zuordabstgv.sembisint=1&missing=allTerms&k_parallel.parallelid=&k_abstgv.abstgvnr=4541&r_zuordabstgv.phaseid=",
+                "https://www.htwg-konstanz.de/studium/pruefungsangelegenheiten/terminefristen/",
+                "https://webmail.htwg-konstanz.de/SOGo/",
+                "https://moodle.htwg-konstanz.de/moodle/login/index.php",
+                "https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/wegweiser",
+                "https://login.rz.htwg-konstanz.de",
+                "https://studium.alex-klauser.de/sonderzeichen"
+            ];
+
+            var iconsHTWG = [
+                "images/bookshelfs.png",
+                "images/Rechenzentrum.png",
+                "images/essensplan.png",
+                "images/Stundenplan.png",
+                "images/Terminfristen.png",
+                "images/WebMail.png",
+                "images/Moodle.png",
+                "images/Rechenzentrum.png",
+                "images/HTWG-RZ.png",
+                "images/racing-team.png"
+            ];
+            var iconsOtherUni = [
+                "images/bookshelfs.png",
+                "images/Rechenzentrum.png",
+                "images/essensplan.png",
+                "images/Stundenplan.png",
+                "images/Terminfristen.png",
+                "images/WebMail.png",
+                "images/Moodle.png",
+                "images/Rechenzentrum.png",
+                "images/HTWG-RZ.png",
+                "images/racing-team.png"
+            ];
+
+            var textsHTWG = [
+                "Bibliothek",
+                "Endlicht",
+                "Essensplan",
+                "Stundenplan",
+                "Terminfristen",
+                "WebMail",
+                "Moodle",
+                "Rechenzentrum",
+                "Login RZ",
+                "Sonderzeichen"
+            ];
+            var textsOtherUni = [
+                "Bibliothek",
+                "Endlicht",
+                "Essensplan",
+                "Stundenplan",
+                "Terminfristen",
+                "WebMail",
+                "Moodle",
+                "Rechenzentrum",
+                "Login RZ",
+                "Sonderzeichen"
+            ];
+
+            var currentLinks = document.querySelectorAll('.container a');
+            var currentImages = document.querySelectorAll('.container img');
+            var currentDescriptions = document.querySelectorAll('.container .description p');
+
+            var isActive = document.querySelector('.switch').classList.toggle('active');
+
+            for (var i = 0; i < currentLinks.length; i++) {
+                currentLinks[i].href = isActive ? linksOtherUni[i] : linksHTWG[i];
+                currentImages[i].src = isActive ? iconsOtherUni[i] : iconsHTWG[i];
+                currentDescriptions[i].textContent = isActive ? textsOtherUni[i] : textsHTWG[i];
             }
-            .link:hover {
-                text-decoration: underline;
-                text-decoration-thickness: 3px;
-                color: rgb(173, 168, 118);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="container-left">
-                <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/bibliothek/suchen-finden" class="link">
-                        <div class="image-container">
-                         <div class="rounded-img">
-                            <img src="images/bookshelfs.png" alt="Bibliothek" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Bibliothek</p>
-                        </div>
+        }
+    </script>
+</head>
+
+<body>
+    <div class="switch" onclick="switchUniversity()"></div>
+    <div class="container">
+        <div class="container-left">
+            <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/bibliothek/start" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/bookshelfs.png" alt="Bibliothek">
                     </div>
-                </a>
-                <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/wegweiser" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/Rechenzentrum.png" alt="Rechenzentrum" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Rechenzentrum</p>
-                        </div>
+                    <div class="description">
+                        <p>Bibliothek</p>
                     </div>
-                </a>
-                <a href="https://seezeit.com/essen/speiseplaene/mensa-htwg/" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/essensplan.png" alt="Essensplan" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Essensplan</p>
-                        </div>
+                </div>
+            </a>
+            <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/cafe-endlicht" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/Rechenzentrum.png" alt="Endlicht">
                     </div>
-                </a>
-                <a href="https://lsf.htwg-konstanz.de/qisserver/rds?state=wplan&act=stg&pool=stg&show=plan&P.vx=kurz&r_zuordabstgv.semvonint=1&r_zuordabstgv.sembisint=1&missing=allTerms&k_parallel.parallelid=&k_abstgv.abstgvnr=4541&r_zuordabstgv.phaseid=" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/Stundenplan.png" alt="Stundenplan" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Stundenplan</p>
-                        </div>
+                    <div class="description">
+                        <p>Endlicht</p>
                     </div>
-                </a>
-                <a href="https://www.htwg-konstanz.de/studium/pruefungsangelegenheiten/terminefristen/" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/Terminfristen.png" alt="Termine & Fristen" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Terminfristen</p>
-                        </div>
+                </div>
+            </a>
+            <a href="https://seezeit.com/essen/speiseplaene/mensa-htwg/" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/essensplan.png" alt="Essensplan">
                     </div>
-                </a> <!--
-                    <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/dienste/vpn-verbindung" class="link">
-                        <div class="image-container">
-                            <div class="rounded-img">
-                                <img src="images/vpn.png" alt="VPN" width="100%"   height="100%">
-                            </div>
-                            <div class="description">
-                                <p>VPN</p>
-                            </div>
-                        </div>
-                    </a> -->
-            </div>
-            <div class="container-right">
-                <a href="https://webmail.htwg-konstanz.de/SOGo/" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/WebMail.png" alt="Mail" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>WebMail</p>
-                        </div>
+                    <div class="description">
+                        <p>Essensplan</p>
                     </div>
-                </a>
-                <a href="https://moodle.htwg-konstanz.de/moodle/login/index.php" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/Moodle.png" alt="Moodle" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Moodle</p>
-                        </div>
+                </div>
+            </a>
+            <a href="https://lsf.htwg-konstanz.de/qisserver/rds?state=wplan&act=stg&pool=stg&show=plan&P.vx=kurz&r_zuordabstgv.semvonint=3&r_zuordabstgv.sembisint=3&missing=allTerms&k_parallel.parallelid=&k_abstgv.abstgvnr=4541&r_zuordabstgv.phaseid=" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/Stundenplan.png" alt="Stundenplan">
                     </div>
-                </a>
-                <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/wegweiser" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/Rechenzentrum.png" alt="Rechenzentrum" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>Rechenzentrum</p>
-                        </div>
+                    <div class="description">
+                        <p>Stundenplan</p>
                     </div>
-                </a>
-                <a href="https://login.rz.htwg-konstanz.de" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/HTWG-RZ.png" alt="Login-RZ" width="100%"   height="100%">
-                        </div>
-                       <div class="description">
-                            <p>Login RZ</p>
-                        </div>
+                </div>
+            </a>
+            <a href="https://www.htwg-konstanz.de/studium/pruefungsangelegenheiten/terminefristen/" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/Terminfristen.png" alt="Termine & Fristen">
                     </div>
-                </a>
-                <a href="https://studium.alex-klauser.de/sonderzeichen" class="link">
-                    <div class="image-container">
-                        <div class="rounded-img">
-                            <img src="images/racing-team.png" alt="VPN" width="100%"   height="100%">
-                        </div>
-                        <div class="description">
-                            <p>  Bodensee</p>
-                            <p>Racing Team</p>
-                        </div>
+                    <div class="description">
+                        <p>Terminfristen</p>
                     </div>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
-    </body>
+        <div class="container-right">
+            <a href="https://webmail.htwg-konstanz.de/SOGo/" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/WebMail.png" alt="Mail">
+                    </div>
+                    <div class="description">
+                        <p>WebMail</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://moodle.htwg-konstanz.de/moodle/login/index.php" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/Moodle.png" alt="Moodle">
+                    </div>
+                    <div class="description">
+                        <p>Moodle</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://www.htwg-konstanz.de/hochschule/einrichtungen/rechenzentrum/wegweiser" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/Rechenzentrum.png" alt="Rechenzentrum">
+                    </div>
+                    <div class="description">
+                        <p>Rechenzentrum</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://login.rz.htwg-konstanz.de" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/HTWG-RZ.png" alt="Login-RZ">
+                    </div>
+                    <div class="description">
+                        <p>Login RZ</p>
+                    </div>
+                </div>
+            </a>
+            <a href="https://studium.alex-klauser.de/sonderzeichen" class="link">
+                <div class="image-container">
+                    <div class="rounded-img">
+                        <img src="images/racing-team.png" alt="Racing Team">
+                    </div>
+                    <div class="description">
+                        <p>Sonderzeichen</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+
 </html>
